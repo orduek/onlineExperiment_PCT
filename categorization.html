@@ -8,16 +8,19 @@
     <script src="jspsych/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/plugin-categorize-html.js"></script>
     <script src="jspsych/plugin-survey.js"></script>
+    <script src="jspsych/plugin-survey-likert.js"></script>
     <script src="jspsych/plugin-preload.js"></script>
     <script src="jspsych/plugin-fullscreen.js"></script>
     <script src="pct.js"></script>
     <script src="survey.js"></script>
+    <script src="lec.js"></script>
     <link href="jspsych/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
     /* initialize jsPsych */
-    timeline.unshift(stage_surveys) // add survey before experiment starts
+    //timeline.unshift(lec)
+    //timeline.unshift(stage_surveys) // add survey before experiment starts
     jsPsych.run(timeline);
 
     

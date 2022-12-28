@@ -8,7 +8,7 @@ var jsPsych = initJsPsych({
         //console.log(interaction_data.json());
     }
 });
-timelineS = []
+
 // 1. Age / experiment enjoyment survey
 var stage_surveys = {
     type: jsPsychSurvey,

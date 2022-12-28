@@ -56,7 +56,9 @@
     proportion = 0.75///set proportion of contingency
     nNonCont = nTrials * (1-proportion)
     //console.log(nNonCont)
-    var feedback_stim =  Array(nTrials).fill(0)
+    // set feedback for A (0) and B (1)
+    var feedback_stimA =  Array(nTrials).fill(0)
+    var feedback_stimB =  Array(nTrials).fill(1)
 
 
 
@@ -103,7 +105,8 @@ play. We will start you off with a few points now. Press continue to begin
 // need to generate arrays of feedback for the entire experiment before running
 // to do so, loop via building the array, pushin nTrial randomized ordered answers per block
 for (let i=0; i <nNonCont; i++){
-        feedback_stim[i] = 1
+        feedback_stimA[i] = 1
+        feedback_stimB[i] = 0
     }
 
 var feedback_stim_shuffled_aR = [] 
@@ -112,10 +115,10 @@ var feedback_stim_shuffled_aP = []
 var feedback_stim_shuffled_bP = []
 var block_exp_shuffle = []
 for (let i=0; i<nBlocks; i++) {
-    feedback_stim_shuffled_aR.push(jsPsych.randomization.repeat(feedback_stim, 1)) //shuffle the feedback stim)
-    feedback_stim_shuffled_bR.push(jsPsych.randomization.repeat(feedback_stim, 1)) //shuffle the feedback stim)
-    feedback_stim_shuffled_aP.push(jsPsych.randomization.repeat(feedback_stim, 1)) //shuffle the feedback stim)
-    feedback_stim_shuffled_bP.push(jsPsych.randomization.repeat(feedback_stim, 1)) //shuffle the feedback stim)
+    feedback_stim_shuffled_aR.push(jsPsych.randomization.repeat(feedback_stimA, 1)) //shuffle the feedback stim)
+    feedback_stim_shuffled_bR.push(jsPsych.randomization.repeat(feedback_stimB, 1)) //shuffle the feedback stim)
+    feedback_stim_shuffled_aP.push(jsPsych.randomization.repeat(feedback_stimA, 1)) //shuffle the feedback stim)
+    feedback_stim_shuffled_bP.push(jsPsych.randomization.repeat(feedback_stimB, 1)) //shuffle the feedback stim)
     block_exp_shuffle.push(jsPsych.randomization.repeat(block_exp, 1));
 }
 
@@ -214,7 +217,7 @@ for (let b=0; b<2; b++){
         // Instead, this function will check the accuracy of the last response and use that information to set
         // the stimulus value on each trial.
         var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
-        //console.log(jsPsych.data.get().last(1).values()[0].correct)
+        console.log(jsPsych.data.get().last(1).values()[0].correct)
         if(last_trial_correct){
         return "<h1 style=color:blue><p><strong>"+pType+"</strong></p></h1><h1 style= color:teal><p> Total of "+points+" points</p></h1>"; // the parameter value has to be returned from the function
         } else {
